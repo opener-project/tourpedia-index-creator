@@ -22,7 +22,7 @@ public class QueryManager {
 	private LuceneIndexQuery searcher;
 	
 	public QueryManager(String value, File indexDir) {
-		this.value    = value;
+		this.value    = value.toLowerCase();
 		this.indexDir = indexDir;
 	}
 	
