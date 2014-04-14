@@ -63,7 +63,7 @@ Below you can see the options to perform queries:
 ```
 With the *showQuery* option, the string used to perform the query will be displayed, each query follows this patter: *Field:\*value\**. If we choose the *exatcMatch* option, the pattern is *Field:value*.
 
-The queries are performed at NAME, DIRECTION and COUNTRY fields. So for every value (without *exactMatch* option), the query string is *NAME:\*value\* DIRECTION:\*value\* COUNTRY:\*value\**. This will search any item containing the value at any field.
+The queries are performed at NAME, DIRECTION and COUNTRY fields. So for every value (without *exactMatch* option), the query string is <i>NAME:\*value\* DIRECTION:\*value\* COUNTRY:\*value\*</i>. This will search any item containing the value at any field.
 
 ## Contributing
 
