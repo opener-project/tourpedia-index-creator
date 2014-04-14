@@ -1,5 +1,5 @@
 
-# TOURPEDIA INDEX
+# TOURPEDIA INDEX CREATOR
 
 This repository contains the source code to create and query the tourpedia index. To manage the index, we use the <a href="http://lucene.apache.org/">Apache Lucene library</a>.
 
