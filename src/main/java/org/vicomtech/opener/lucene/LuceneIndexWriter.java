@@ -1,4 +1,4 @@
-package org.vicomtech.opener.tourpediaindex;
+package org.vicomtech.opener.lucene;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +14,7 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+import org.vicomtech.opener.tourpediaindex.POI;
 import org.vicomtech.opener.tourpediaindex.POI.Field;
 
 /**
@@ -84,10 +85,10 @@ public class LuceneIndexWriter {
 		document.add(new StringField(Field.COUNTRY.toString(), poi.getCountry(), Store.YES));
 		document.add(new StringField(Field.URL.toString(), poi.getURL(), Store.YES));
 		this.writer.addDocument(document);
-		this.commit();
+		//this.commit();
 	}
 	
-	private void commit() throws IOException {
+	public void commit() throws IOException {
 		try {
 			this.writer.commit();
 		}

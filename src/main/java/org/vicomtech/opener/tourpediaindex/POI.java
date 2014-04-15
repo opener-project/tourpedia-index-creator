@@ -9,7 +9,7 @@ package org.vicomtech.opener.tourpediaindex;
  */
 public class POI {
 
-	protected static enum Field {
+	public static enum Field {
 		ID(0), NAME(1), DIRECTION(2), TYPE(3), COUNTRY(4), URL(5);
 		private int index;
 		private Field(int index) {

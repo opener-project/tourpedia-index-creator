@@ -102,7 +102,7 @@ public class Utils {
 	 * @param msg
 	 */
 	public static void displayTextln(String msg) {
-		System.out.println(msg);
+		System.err.println(msg);
 	}
 	
 	/**
@@ -110,14 +110,14 @@ public class Utils {
 	 * @param msg
 	 */
 	public static void displayText(String msg) {
-		System.out.print(msg);
+		System.err.print(msg);
 	}
 	
 	/**
 	 * Prints divider
 	 */
 	private static void displayDivider() {
-		System.out.println(DIVIDER);
+		System.err.println(DIVIDER);
 	}
 
 }

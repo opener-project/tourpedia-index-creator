@@ -1,4 +1,4 @@
-package org.vicomtech.opener.tourpediaindex;
+package org.vicomtech.opener.lucene;
 
 import java.io.File;
 import java.io.IOException;

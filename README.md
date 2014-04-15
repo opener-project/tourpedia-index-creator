@@ -31,7 +31,34 @@ To execute the Domain Adaptation Tool execute this command:
 ```
 The *-h* or *--help* option will display the help information.
 
-We have two functionalities: tourpedia index creation and queries.
+We have three functionalities: **kaf annotation**, **tourpedia index creation** and **queries**.
+
+### KAF annotation
+
+In order to annotate KAF files, please configure the *config/index.conf* file. This file configures the Tourpedia Index location, if especified index does not exist when linking entities within kaf files, a new index will be created. There are two keys:
+
+* DATASET_PATH : path to the dataset.
+* INDEX_PATH : index directory path.
+
+Below you can see the options for KAF file annotation:
+
+```
+    Link entities within KAF file to the tourpedia index:
+        -kaf [input.kaf output.kaf]
+      If input and output KAF files are not especified,
+      reads KAF from std input and writes in std output.
+```
+
+There is a test KAF file at *test/input.kaf* path, to annotate, you can use the following commands:
+
+
+```
+    java -jar target/TourpediaIndex-0.0.1.jar -kaf test/input.kaf test/output.kaf
+```
+or
+```
+    cat test/input.kaf java -jar target/TourpediaIndex-0.0.1.jar -kaf  > test/output.kaf
+```
 
 ### Create the Tourpedia Index
 

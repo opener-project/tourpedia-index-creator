@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.vicomtech.opener.tourpediaindex.NELinking.ConfigException;
 import org.vicomtech.opener.tourpediaindex.Utils.ExitStatus;
 
 /**
@@ -17,11 +18,14 @@ import org.vicomtech.opener.tourpediaindex.Utils.ExitStatus;
  */
 public class Main {
 
-	private final static int CREATE_CMD = 0;
-	private final static int QUERY_CMD  = 1;
+	private final static int KAF_CMD    = 0;
+	private final static int CREATE_CMD = 1;
+	private final static int QUERY_CMD  = 2;
 	
 	private int command = -1;
 	
+	private File inKaf    = null;
+	private File outKaf   = null;
 	private File docPath  = null;
 	private File indexDir = null;
 	private String value  = null;
@@ -47,7 +51,16 @@ public class Main {
 		// get arguments
 		for ( int i=0; i<args.size(); i++ ) {
 			String arg = args.get(i);
-			if (arg.equalsIgnoreCase("-create"))
+			if ( arg.equalsIgnoreCase("-kaf") ) {
+				this.command = KAF_CMD;
+				if (i+2 < args.size()
+						&& !args.get(i+1).startsWith("-")
+						&& !args.get(i+2).startsWith("-")) {
+					this.inKaf = new File(this.getArgument(args, ++i));
+					this.outKaf = new File(this.getArgument(args, ++i));
+				}
+			}
+			else if ( arg.equalsIgnoreCase("-create") )
 				this.command = CREATE_CMD;
 			else if ( arg.equalsIgnoreCase("-query") )
 				this.command = QUERY_CMD;				
@@ -99,6 +112,9 @@ public class Main {
 		if (this.command < 0) {
 			Utils.printError("command missing");
 			return false;
+		}
+		else if (this.command == KAF_CMD) {
+			return true;
 		}
 		else if (this.command == CREATE_CMD) {
 			return checkCreateArguments();
@@ -161,7 +177,10 @@ public class Main {
 		try {
 			prog.getArguments(args);
 			
-			if (prog.command == CREATE_CMD) {
+			if (prog.command == KAF_CMD) {
+				NELinking.link(prog.inKaf, prog.outKaf);
+			}
+			else if (prog.command == CREATE_CMD) {
 				IndexManager.create(prog.docPath, prog.indexDir);
 			}
 			else if (prog.command == QUERY_CMD) {
@@ -171,8 +190,11 @@ public class Main {
 		catch (IOException ex) {
 			Utils.printError(ex.getMessage());
 			System.exit(ExitStatus.ERROR.getValue());
-		} catch (ParseException e) {
-			Utils.printError(e.getMessage());
+		} catch (ParseException ex) {
+			Utils.printError(ex.getMessage());
+			System.exit(ExitStatus.ERROR.getValue());
+		} catch (ConfigException ex) {
+			Utils.printError(ex.getMessage());
 			System.exit(ExitStatus.ERROR.getValue());
 		}
 	}
@@ -181,6 +203,11 @@ public class Main {
 	
 	private void showHelp() {
 		System.err.println("Shows this screen: -h or --help");
+    	System.err.println("");
+    	System.err.println("Link entities within KAF file to the tourpedia index:");
+    	System.err.println("    -kaf [input.kaf output.kaf]");
+    	System.err.println("  If input and output KAF files are not especified,");
+    	System.err.println("  reads KAF from std input and writes in std output.");
     	System.err.println("");
     	System.err.println("Create a new index:");
     	System.err.println("    -create -doc docFile -index indexDir");

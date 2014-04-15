@@ -1,8 +1,12 @@
 package org.vicomtech.opener.tourpediaindex;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
+
+import org.vicomtech.opener.lucene.LuceneIndexWriter;
 
 /**
  * This class manages the tourpedia index creation
