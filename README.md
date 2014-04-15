@@ -20,7 +20,7 @@ Execute the *./INSTALL.sh* file:
 ## DataSet
 
 In the *DataSet* folder we can find the tourpedia source *Places.csv* to create the tourpedia index.
-The tourpedia index can be also downloaded from <a href="http://wafi.iit.cnr.it/openervm/outputs/Places.csv">here</a>.
+The tourpedia source can be also downloaded from <a href="http://wafi.iit.cnr.it/openervm/outputs/Places.csv">here</a>.
             
 ## Usage
 
